@@ -95,20 +95,26 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     var ssState = self.convertHomeKitStateToSimpliSafeState(state);
     this.log("Converted state %s", ssState);
 
-    ss3Client.setState(ssState).then(
-      function() {
-        this.log("Success");
-        // Important: after a successful server response, we update the current state of the system
-        self.securityService.setCharacteristic(
-          Characteristic.SecuritySystemCurrentState,
-          state
-        );
-        callback(null, state);
-      },
-      function() {
+    ss3Client
+      .setState(ssState)
+      .then(
+        function() {
+          this.log("Success");
+          // Important: after a successful server response, we update the current state of the system
+          self.securityService.setCharacteristic(
+            Characteristic.SecuritySystemCurrentState,
+            state
+          );
+          callback(null, state);
+        },
+        function() {
+          callback(new Error("Failed to set target state to " + state));
+        }
+      )
+      .catch(function(error) {
+        this.log(error);
         callback(new Error("Failed to set target state to " + state));
-      }
-    );
+      });
   },
 
   getState: function(callback) {
