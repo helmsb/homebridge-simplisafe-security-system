@@ -96,7 +96,7 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     this.log("Converted state %s", ssState);
 
     ss3Client
-      .setState(ssState)
+      .setState("away")
       .then(
         function() {
           this.log("Success");
