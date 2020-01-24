@@ -99,12 +99,12 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     ss3Client
       .setState(ssState)
       .then(
-        function() {
-          this.log("Success");
+        function(response) {
+          this.log(response);
           // Important: after a successful server response, we update the current state of the system
           self.securityService.setCharacteristic(
             Characteristic.SecuritySystemCurrentState,
-            state
+            self.convertSimpliSafeStateToHomeKitState(state)
           );
           callback(null, state);
         },
