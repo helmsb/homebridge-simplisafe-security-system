@@ -90,10 +90,14 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     this.log("Setting state to %s", state);
 
     var self = this;
-    // Set state in simplisafe 'off' or 'home' or 'away'
 
-    ss3Client.setState(self.convertHomeKitStateToSimpliSafeState(state)).then(
+    // Set state in simplisafe 'off' or 'home' or 'away'
+    var ssState = self.convertHomeKitStateToSimpliSafeState(state);
+    this.log("Converted state %s", ssState);
+
+    ss3Client.setState(ssState).then(
       function() {
+        this.log("Success");
         // Important: after a successful server response, we update the current state of the system
         self.securityService.setCharacteristic(
           Characteristic.SecuritySystemCurrentState,
