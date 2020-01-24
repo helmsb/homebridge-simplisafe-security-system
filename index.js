@@ -21,6 +21,7 @@ function SimpliSafeSecuritySystemAccessory(log, config) {
     config.auth.password,
     config.auth.retryInSec,
     config.auth.retries,
+    config.v2,
     log
   );
 
@@ -96,7 +97,7 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     this.log("Converted state %s", ssState);
 
     ss3Client
-      .setState("away")
+      .setState(ssState)
       .then(
         function() {
           this.log("Success");

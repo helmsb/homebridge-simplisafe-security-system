@@ -1,21 +1,22 @@
 {
-    "bridge": {
-        "name": "Homebridge",
-        "username": "CC:22:3D:E3:CE:30",
-        "port": 51826,
-        "pin": "031-45-154"
-    },
+  "bridge": {
+    "name": "Homebridge",
+    "username": "CC:22:3D:E3:CE:30",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
 
-    "accessories": [
-        {
-            "accessory": "Homebridge-SimpliSafe",
-            "name": "Alarm System",
-            "auth": {
-                "username": "your@email.com",
-                "password": "yourawesomepassword",
-                "retryInSec": 1,
-                "retries": 3
-            }
-        }
-    ]
+  "accessories": [
+    {
+      "accessory": "Homebridge-SimpliSafe",
+      "name": "Alarm System",
+      "v2": false,
+      "auth": {
+        "username": "your@email.com",
+        "password": "yourawesomepassword",
+        "retryInSec": 1,
+        "retries": 3
+      }
+    }
+  ]
 }
