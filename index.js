@@ -93,6 +93,11 @@ SimpliSafeSecuritySystemAccessory.prototype = {
     var self = this;
 
     // Set state in simplisafe 'off' or 'home' or 'away'
+    self.securityService.setCharacteristic(
+      Characteristic.SecuritySystemCurrentState,
+      state
+    );
+
     var ssState = self.convertHomeKitStateToSimpliSafeState(state);
     this.log("Converted state %s", ssState);
 
